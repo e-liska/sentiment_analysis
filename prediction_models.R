@@ -6,8 +6,7 @@ get_linear_regression_model <- function(force_new_model = FALSE) {
     saveRDS(regression_model, model_location)
     return (regression_model)
   }
-  regression_model <- readRDS(model_location)
-  return (regression_model)
+  readRDS(model_location) %>% return()
 }
 
 get_naive_bays <- function (force_new_model = FALSE) {
@@ -18,4 +17,7 @@ get_naive_bays <- function (force_new_model = FALSE) {
     nb_model <- naiveBayes(sentiment ~., data = data.train)
     saveRDS(nb_model, model_location)
   }
+  readRDS(model_location) %>% return()
 }
+
+
