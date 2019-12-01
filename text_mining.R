@@ -45,9 +45,11 @@ train_predictions <- (data.train$pred>=0.5)
 measure_accuracy(data.train$sentiment, train_predictions)
 
 # naive Bays accuracy 74.7%
-nb_model <- get_naive_bays
+nb_model <- get_naive_bays()
 measure_accuracy(predict(nb_model, data.test), data.test$sentiment)
 
 # random forest  80.9%
+rand_forest_model <- get_random_forest_model()
+measure_accuracy(predict(rforest_model, reviews.test), data.test$sentiment)
 
-
+# TODO gradient boosting machne

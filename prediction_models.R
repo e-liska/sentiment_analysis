@@ -20,4 +20,27 @@ get_naive_bays <- function (force_new_model = FALSE) {
   readRDS(model_location) %>% return()
 }
 
+get_random_forest_model  <- function(force_new_model = FALSE) {
+  library(randomForest)
+  model_location <- "./random_forest_model.rds"
+  
+  if(!file.exists(model_location) || force_new_model) {
+    oldNames <- names(data.train)
+    newNames <- make.names(oldNames, unique = TRUE)
+    names(data.train)<-newNames
+    names(data.test) <- newNames
+    
+    rforest_model <- randomForest(sentiment ~., data = data.train)
+    saveRDS(rforest_model, model_location)
+  }
+  readRDS(model_location) %>% return()
+}
 
+get_xgboost_machine_model <- function (force_new_model = FALSE) {
+  model_location <- "./xgb_model.rds"
+  
+  if(!file.exists(model_location) || force_new_model) {
+    # TODO
+  }
+  readRDS(model_location) %>% return()
+}
